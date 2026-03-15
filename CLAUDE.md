@@ -12,7 +12,7 @@ This repository is a Claude Code skill package for generating complete Chinese n
 - `README.md` - user-facing usage and installation notes.
 - `references/` - operational writing guides and templates, not passive docs.
   - `outline-template.md` -> `novels/<小说名>/00-大纲.md`
-  - `character-template.md` -> `novels/<小说名>/01-人物档案.md`
+  - `character-template.md` -> `novels/<小说名>/01-人物档案.md` + `novels/<小说名>/人物档案/` directory tree
   - `chapter-template.md` -> per-chapter files
   - `chapter-guide.md`, `hook-techniques.md`, `dialogue-writing.md`, `consistency.md`, `quality-checklist.md` -> chapter-writing and QA rules
 - `scripts/check_chapter_wordcount.py` - the only executable validation utility; it strips common Markdown and counts Chinese Han characters.
@@ -43,7 +43,7 @@ Manual usage from the docs:
 The skill is organized as a 3-phase workflow defined in `SKILL.md`:
 
 1. **Interactive intake** - ask 5 questions with `AskUserQuestion` to collect genre, protagonist setup, protagonist personality, core conflict, and chapter count.
-2. **Planning + confirmation** - create `novels/<小说名>/`, generate `00-大纲.md` from the outline template and `01-人物档案.md` from the character template, then present a summary and wait for user confirmation.
+2. **Planning + confirmation** - create `novels/<小说名>/`, generate `00-大纲.md` from the outline template, generate `01-人物档案.md` as the master index from the character template, create detailed role files under `人物档案/`, then present a summary and wait for user confirmation.
 3. **Sequential chapter generation** - create each chapter from the chapter template, update outline progress, append chapter summaries, run the word-count check, and continue chapter by chapter until completion.
 
 ## Important conventions
@@ -55,8 +55,13 @@ The skill is organized as a 3-phase workflow defined in `SKILL.md`:
   - the ending must leave a suspense hook for the next chapter
 - Generated output is expected under `novels/<小说名>/` with:
   - `00-大纲.md`
-  - `01-人物档案.md`
+  - `01-人物档案.md` as the character master index
+  - `人物档案/` for detailed character files
   - `第XX章-*.md` chapter files
+- Character archive layout conventions:
+  - long-term core roles go in `主角/`、`核心配角/`、`反派与镜像/`、`专业支柱/`、`创业班底/`、`历史人物/`、`阵营预留/`
+  - temporary arc-specific roles go in `人物档案/分卷角色/第X卷-卷名/`
+  - a role should have only one primary home at a time; if promoted from a volume directory into a long-term category, move the file and leave only a migration note in the old volume README
 
 ## When changing behavior
 
