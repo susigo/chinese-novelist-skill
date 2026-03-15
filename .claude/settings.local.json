@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Skill(chinese-humanizer)",
-      "Skill(skill-creator)"
+      "Skill(skill-creator)",
+      "Bash(node:*)"
     ]
   }
 }
