@@ -115,11 +115,12 @@ Options:
 执行以下步骤：
 
 1. **创建项目文件夹**：`novels/[小说名称]/`
-2. **生成大纲**：创建 `00-大纲.md`，使用 `references/outline-template.md` 模板，填入完整的章节规划
-3. **生成人物档案总索引**：创建 `01-人物档案.md`，使用 `references/character-template.md` 模板，写入人物档案总入口、目录结构与维护规则
-4. **生成角色文件**：在 `人物档案/` 目录树下为主要角色创建独立文件
+2. **生成大纲**：创建 `novels/[小说名称]/大纲/00-大纲.md`，使用 `references/outline-template.md` 模板，填入完整的章节规划
+3. **生成人物档案总索引**：创建 `novels/[小说名称]/人物档案/01-人物档案.md`，使用 `references/character-template.md` 模板，写入人物档案总入口、目录结构与维护规则
+4. **生成角色文件**：在 `novels/[小说名称]/人物档案/` 目录树下为主要角色创建独立文件
    - 长期核心角色放入 `主角/`、`核心配角/`、`反派与镜像/`、`专业支柱/`、`创业班底/`、`历史人物/`、`阵营预留/`
-   - 卷内临时角色放入 `人物档案/分卷角色/第X卷-卷名/`
+   - 卷内临时角色放入 `分卷角色/第X卷-卷名/`
+   - 如有必要，可在 `novels/[小说名称]/设定/` 下补充世界观、势力、制度等辅助设定文件
    - 任一角色在任一时刻只保留一个主归属目录；若卷内角色后续成长为长期核心角色，则迁入长期目录，原分卷 README 只保留迁移说明，不保留第二份正文
 
 完成后，向用户展示规划摘要并请求确认，等待用户确认。用户同意后，进入"第三阶段：疯狂创作"。
@@ -140,11 +141,11 @@ Options:
 
 #### 1. 写前分析
 
-1. 读取 `00-大纲.md` - 查看TODO list和已完成章节的摘要
-2. 读取 `01-人物档案.md` - 确认当前卷对应的人物目录、角色归属和迁移说明
+1. 读取 `novels/<小说名>/大纲/00-大纲.md` - 查看 TODO list 和已完成章节的摘要
+2. 读取 `novels/<小说名>/人物档案/01-人物档案.md` - 确认当前卷对应的人物目录、角色归属和迁移说明
 3. 读取本章涉及的角色文件 - 至少包含主角、主要对手和关键配角
-4. 读取 `00-大纲.md` 中上一章的摘要
-5. 更新`00-大纲.md` 中 TODO list - 将本章标记为"进行中"
+4. 读取 `novels/<小说名>/大纲/00-大纲.md` 中上一章的摘要
+5. 更新 `novels/<小说名>/大纲/00-大纲.md` 中 TODO list - 将本章标记为"进行中"
 6. 设计开头钩子 - **最关键**：前20%必须有即时冲突 → [chapter-guide.md](references/chapter-guide.md)（10种开头技巧）
 7. 规划场景 - 确定本章需要3-5个场景
 
@@ -172,8 +173,8 @@ Options:
 
 #### 4. 最后收尾
 
-15. 生成章节摘要 - 在 `00-大纲.md` 添加摘要（300-500字）
-16. 更新状态 - `00-大纲.md` 中 TODO list - 将本章标记为"完成"
+15. 生成章节摘要 - 在 `novels/<小说名>/大纲/00-大纲.md` 添加摘要（300-500字）
+16. 更新状态 - `novels/<小说名>/大纲/00-大纲.md` 中 TODO list - 将本章标记为"完成"
 
 ---
 
@@ -189,13 +190,13 @@ Options:
 
 ```bash
 # 检查单个章节
-python scripts/check_chapter_wordcount.py novels/小说名/第01章.md
+python scripts/check_chapter_wordcount.py novels/小说名/第01章-章节名.md
 
 # 检查所有章节
 python scripts/check_chapter_wordcount.py --all novels/小说名/
 
 # 自定义最小字数
-python scripts/check_chapter_wordcount.py novels/小说名/第01章.md 3500
+python scripts/check_chapter_wordcount.py novels/小说名/第01章-章节名.md 3500
 ```
 
 低于3000字的章节必须使用 [content-expansion.md](references/content-expansion.md) 的扩充技巧进行扩充。
