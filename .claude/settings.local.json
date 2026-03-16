@@ -3,7 +3,10 @@
     "allow": [
       "Skill(chinese-humanizer)",
       "Skill(skill-creator)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(py:*)",
+      "Bash(python3:*)"
     ]
   }
 }
